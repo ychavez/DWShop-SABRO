@@ -1,3 +1,4 @@
+using DWShop.Service.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DWShop.Service.Api.Controllers
@@ -12,10 +13,20 @@ namespace DWShop.Service.Api.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly SingletonService singletonService;
+        private readonly TransientService transientService;
+        private readonly ScoopedService scoopedService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger,
+            SingletonService singletonService,
+            TransientService transientService,
+            ScoopedService scoopedService)
         {
             _logger = logger;
+            this.singletonService = singletonService;
+            this.transientService = transientService;
+            this.scoopedService = scoopedService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -28,6 +39,36 @@ namespace DWShop.Service.Api.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+
+        [HttpGet("GetSingletonGuid")]
+        public string GetSingleton() {
+            
+            return singletonService.GetGuid();
+        
+        }
+
+
+
+        [HttpGet("GetTransientGuid")]
+        public string GetTransient()
+        {
+            string str1 = transientService.GetGuid();
+            string str2 = transientService.GetGuid();
+            string dobleGuid = $"{str2} {str1}";
+            return dobleGuid;
+
+        }
+
+        [HttpGet("GetScopedGuid")]
+        public string GetScoped()
+        {
+            string str1 = scoopedService.GetGuid();
+            string str2 = scoopedService.GetGuid();
+            string dobleGuid = $"{str2} {str1}";
+            return dobleGuid;
+
         }
     }
 }
