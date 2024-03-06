@@ -15,7 +15,7 @@ namespace DWShop.Service.Api.Controllers
 
 
         public WeatherForecastController(
-            ILogger<WeatherForecastController> logger,
+            ILogger<WeatherForecastController> logger
           )
         {
             _logger = logger;
@@ -35,31 +35,6 @@ namespace DWShop.Service.Api.Controllers
         }
 
 
-        [HttpGet("GetSingletonGuid")]
-        public string GetSingleton() {
-            
-            return singletonService.GetGuid();
-        
-        }
-
-
-
-        [HttpGet("GetTransientGuid")]
-        public string GetTransient()
-        {
-            
-            string dobleGuid = $"{str2} {str1}";
-            return dobleGuid;
-
-        }
-
-        [HttpGet("GetScopedGuid")]
-        public string GetScoped()
-        {
-           
-            string dobleGuid = $"{str2} {str1}";
-            return dobleGuid;
-
-        }
+      
     }
 }
