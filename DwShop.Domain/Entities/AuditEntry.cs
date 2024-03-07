@@ -18,7 +18,7 @@ namespace DWShop.Domain.Entities
         public Dictionary<string, object> OldValues { get; set; } = new();
         public Dictionary<string, object> NewValues { get; set; } = new();
 
-        public List<PropertyEntry> TemporaryProperties { get; set; }
+        public List<PropertyEntry> TemporaryProperties { get; set; } = new();
 
         public AuditType AuditType { get; set; }
 

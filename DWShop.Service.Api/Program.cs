@@ -1,7 +1,11 @@
 
-
+using DWShop.Application.Extensions;
+using DWShop.Infrastructure.Context;
+using DWShop.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace DWShop.Service.Api
+
 {
     public class Program
     {
@@ -10,6 +14,13 @@ namespace DWShop.Service.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddAplicationLayer();
+            builder.Services.AddRepositories();
+
+            builder.Services.AddDbContext<AuditableContext>(
+                options => options.UseSqlServer
+                (builder.Configuration.GetConnectionString("DefaultConnection"))
+                );
 
             builder.Services.AddControllers();
 

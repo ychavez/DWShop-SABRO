@@ -68,17 +68,45 @@ namespace DWShop.Infrastructure.Context
                             }
                             break;
                     }
-                   
-
                 }
             }
 
+            foreach (var auditEntry in auditEntries.Where(x => !x.HasTemporaryProperties))
+            {
+                Audit.Add(auditEntry.ToAudit());
+            }
 
+            return auditEntries.Where(x => x.HasTemporaryProperties).ToList();
         }
-        // private Task OnAfterSaveChanges(List<AuditEntry>)
-
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        private Task OnAfterSaveChanges(List<AuditEntry> auditEntries, CancellationToken cancellationToken = new())
         {
+            if (auditEntries is null || !auditEntries.Any())
+                return Task.CompletedTask;
+
+            foreach (var auditEntry in auditEntries)
+            {
+                foreach (var prop in auditEntry.TemporaryProperties)
+                {
+                    if (prop.Metadata.IsPrimaryKey())
+                    {
+                        auditEntry.KeyValues[prop.Metadata.Name] = prop.CurrentValue!;
+                    }
+                    else
+                    {
+                        auditEntry.NewValues[prop.Metadata.Name] = prop.CurrentValue!;
+                    }
+                }
+                Audit.Add(auditEntry.ToAudit());
+
+            }
+            return SaveChangesAsync(cancellationToken);
+        }
+
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+
+            var audtEntries = onBeforeSaveChanges("User");
+
             foreach (var entry in ChangeTracker.Entries<IAuditableEntity>().ToList())
             {
                 switch (entry.State)
@@ -93,7 +121,11 @@ namespace DWShop.Infrastructure.Context
                         break;
                 }
             }
-            return base.SaveChangesAsync(cancellationToken);
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            await OnAfterSaveChanges(audtEntries);
+
+            return result;
         }
     }
 

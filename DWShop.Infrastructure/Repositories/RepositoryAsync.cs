@@ -1,13 +1,12 @@
 ﻿using DWShop.Domain.Contracts;
 using DWShop.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace DWShop.Infrastructure.Repositories
 {
-    public class RepositoryAsync<T, TId>(AuditableContext context)
-       where T : AuditableEntity<TId>
+    public class RepositoryAsync<T, TId>(AuditableContext context) 
+        : IRepositoryAsync<T, TId> where T : AuditableEntity<TId>
     {
 
         public DbSet<T> Entities { get; }
