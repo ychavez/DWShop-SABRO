@@ -30,4 +30,8 @@ namespace DWShop.Application.Features.Catalog.Commands.Create
             return catalog.Id;
         }
     }
+
+
+    // add-migration NombreMigraion
+    // Update-Database
 }

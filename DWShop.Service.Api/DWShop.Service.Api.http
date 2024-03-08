@@ -4,3 +4,19 @@ GET {{DWShop.Service.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{DWShop.Service.Api_HostAddress}}/api/catalog
+Content-Type: application/json
+
+
+  {
+  "name": "string",
+  "category": "string",
+  "description": "string",
+  "summary": "string",
+  "price": 0,
+  "photoURL": "string"
+}
+
+
+###
