@@ -1,10 +1,5 @@
 ﻿using DWShop.Application.Features.Catalog.Commands.Createlist;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DWShop.Application.Validations.Catalog.Commands.CreateList
 {

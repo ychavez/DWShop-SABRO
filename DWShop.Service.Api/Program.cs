@@ -2,6 +2,7 @@
 using DWShop.Application.Extensions;
 using DWShop.Infrastructure.Context;
 using DWShop.Infrastructure.Extensions;
+using DWShop.Service.Api.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 namespace DWShop.Service.Api
@@ -37,7 +38,7 @@ namespace DWShop.Service.Api
             app.UseSwagger();
             app.UseSwaggerUI();
 #endif
-            
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseAuthorization();
 
