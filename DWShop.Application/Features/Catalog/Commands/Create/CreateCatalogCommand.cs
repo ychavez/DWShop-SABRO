@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using DWShop.Shared.Wrapper;
+using MediatR;
 
 namespace DWShop.Application.Features.Catalog.Commands.Create
 {
-    public class CreateCatalogCommand : IRequest<int>
+    public class CreateCatalogCommand : IRequest<IResult<int>>
     {
         public string Name { get; set; }
         public string Category { get; set; }

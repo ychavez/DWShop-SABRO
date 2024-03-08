@@ -105,7 +105,7 @@ namespace DWShop.Infrastructure.Context
         public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
 
-            var audtEntries = onBeforeSaveChanges("User");
+        //    var audtEntries = onBeforeSaveChanges("User");
 
             foreach (var entry in ChangeTracker.Entries<IAuditableEntity>().ToList())
             {
@@ -123,7 +123,7 @@ namespace DWShop.Infrastructure.Context
             }
             var result = await base.SaveChangesAsync(cancellationToken);
 
-            await OnAfterSaveChanges(audtEntries);
+         //   await OnAfterSaveChanges(audtEntries);
 
             return result;
         }

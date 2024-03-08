@@ -1,4 +1,5 @@
 ﻿using DWShop.Application.Features.Catalog.Commands.Create;
+using DWShop.Application.Features.Catalog.Commands.Createlist;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,5 +19,9 @@ namespace DWShop.Service.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<int>> CreateProduct([FromBody]CreateCatalogCommand command)
             => Ok( await mediator.Send(command));
+
+        [HttpPost("InsertList")]
+        public async Task<ActionResult<IResult>> CreateProductList([FromBody] CreateCatalogListCommand command)
+            => Ok(await mediator.Send(command));
     }
 }
