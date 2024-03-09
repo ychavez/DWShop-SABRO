@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Responses\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DwShop.Domain\DWShop.Domain.csproj" />
     <ProjectReference Include="..\DWShop.Shared\DWShop.Shared.csproj" />
   </ItemGroup>

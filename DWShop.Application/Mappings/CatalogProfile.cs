@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DWShop.Application.Features.Catalog.Commands.Create;
+using DWShop.Application.Responses.Catalog;
 using DWShop.Domain.Entities;
 
 namespace DWShop.Application.Mappings
@@ -9,6 +10,7 @@ namespace DWShop.Application.Mappings
         public CatalogProfile()
         {
             CreateMap<Catalog, CreateCatalogCommand>().ReverseMap();
+            CreateMap<Catalog, CatalogResponse>().ReverseMap();
         }
     }
 }
