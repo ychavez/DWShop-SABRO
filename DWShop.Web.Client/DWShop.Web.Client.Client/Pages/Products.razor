@@ -1,0 +1,34 @@
+﻿@page "/products"
+@using DWShop.Application.Responses.Catalog
+@using DWShop.Client.Infrastructure.Managers.Products.Get
+
+
+<MudText Typo="Typo.h2">Productos</MudText>
+
+
+<MudTable Items="@Elements">
+
+</MudTable>
+
+@code {
+
+    [Inject]
+    public IGetProductsManager  productsManager {get; set;}
+
+    public IEnumerable<CatalogResponse> Elements { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        await Reset();
+    }
+
+    private async Task Reset()
+    {
+        var productResponse = await productsManager.GetAllProducts();
+        if (productResponse.Succeded)
+        {
+            Elements = productResponse.Data;
+        }
+    }
+}

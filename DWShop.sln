@@ -39,13 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{6D9E88
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4A176783-BC48-4098-B340-7385ACB9DE82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Client.Infrastructure", "DWShop.Client.Infrastructure\DWShop.Client.Infrastructure.csproj", "{2F1BF473-6A82-44D7-8D72-E3153590D0FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Client.Infrastructure", "DWShop.Client.Infrastructure\DWShop.Client.Infrastructure.csproj", "{2F1BF473-6A82-44D7-8D72-E3153590D0FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Web.Client", "DWShop.Web.Client\DWShop.Web.Client\DWShop.Web.Client.csproj", "{7D86B48D-16A1-4889-9E94-79D0C27FD5EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Client", "DWShop.Web.Client\DWShop.Web.Client\DWShop.Web.Client.csproj", "{7D86B48D-16A1-4889-9E94-79D0C27FD5EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Web.Client.Client", "DWShop.Web.Client\DWShop.Web.Client.Client\DWShop.Web.Client.Client.csproj", "{C67CAF1F-4405-49E8-936D-45E00A480D98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Client.Client", "DWShop.Web.Client\DWShop.Web.Client.Client\DWShop.Web.Client.Client.csproj", "{C67CAF1F-4405-49E8-936D-45E00A480D98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Web.Infrastructure", "DWShop.Web.Infrastructure\DWShop.Web.Infrastructure.csproj", "{683DD47D-6365-4357-B29C-AEA4628B3FAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Infrastructure", "DWShop.Web.Infrastructure\DWShop.Web.Infrastructure.csproj", "{683DD47D-6365-4357-B29C-AEA4628B3FAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

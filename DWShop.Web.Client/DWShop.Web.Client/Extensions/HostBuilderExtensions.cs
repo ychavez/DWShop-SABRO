@@ -1,4 +1,6 @@
-﻿using DWShop.Client.Infrastructure.Managers;
+﻿
+using DWShop.Client.Infrastructure.Managers;
+using DWShop.Client.Infrastructure.Routes;
 using DWShop.Web.Infrastructure.Authtentication;
 
 namespace DWShop.Web.Client.Extensions
@@ -10,7 +12,7 @@ namespace DWShop.Web.Client.Extensions
         {
 
             builder.Services.AddTransient<AuthenticationHeaderHandler>();
-            builder.Services.AddHttpClient("", x=> { })
+            builder.Services.AddHttpClient(BaseConfiguration.BaseAddress, x=> { })
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
 
 
