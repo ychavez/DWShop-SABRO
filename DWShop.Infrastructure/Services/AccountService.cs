@@ -23,7 +23,7 @@ namespace DWShop.Infrastructure.Services
         public async Task<string> GetToken(IdentityUser user)
         {
             var now = DateTime.UtcNow;
-            var key = configuration["Indentity:Key"];
+            var key = configuration["Identity:Key"];
 
             var claims = new List<Claim>
             {

@@ -44,7 +44,7 @@ namespace DWShop.Application.Features.Identity.Commands.Login
 
             var token = await accountService.GetToken(user);
 
-            var loginResult = mapper.Map<LoginResponse>(result);
+            var loginResult = mapper.Map<LoginResponse>(user);
 
             loginResult.Token = token;
 
