@@ -15,6 +15,7 @@ namespace DWShop.Web.Client
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
+            builder.AddClientServices();
 
             builder.Services.AddMudServices();
             builder.Services.AddManagers();
@@ -37,7 +38,7 @@ namespace DWShop.Web.Client
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode()
                 .AddInteractiveWebAssemblyRenderMode()
-                .AddAdditionalAssemblies(typeof(Counter).Assembly);
+                .AddAdditionalAssemblies(typeof(Products).Assembly);
 
             app.Run();
         }
