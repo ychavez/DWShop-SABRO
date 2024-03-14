@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DWShop.Client.Infrastructure\DWShop.Client.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\DWShop.Web.Infrastructure\DWShop.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

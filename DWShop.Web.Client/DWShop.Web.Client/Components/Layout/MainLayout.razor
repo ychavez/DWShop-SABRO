@@ -1,4 +1,5 @@
 ﻿@using DWShop.Web.Client.Client.Components
+
 @inherits LayoutComponentBase
 
 <MudThemeProvider Theme="currentTheme" />
@@ -8,8 +9,8 @@
 <MudSnackbarProvider/>
 
 <MudLayout>
-    <MainBody OnDarkMode="@DarkMode">
-        @Body
+    <MainBody OnDarkMode="@DarkMode" ChildContent="@Body">
+      
     </MainBody>
 </MudLayout>
 

@@ -6,6 +6,7 @@ namespace DWShop.Web.Client.Components.Layout
 {
     public partial class MainLayout
     {
+     
 
         private MudTheme currentTheme;
 
@@ -18,6 +19,8 @@ namespace DWShop.Web.Client.Components.Layout
                 ? DWTheme.DefaultTheme
                 : DWTheme.DarkTheme;
         }
+
+       
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
