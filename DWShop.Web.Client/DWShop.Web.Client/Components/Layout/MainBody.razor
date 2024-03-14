@@ -1,4 +1,4 @@
-﻿@rendermode InteractiveServer
+﻿
 <MudAppBar>
     <MudIconButton Icon="@Icons.Material.Filled.Apps" Color="Color.Inherit"
     Edge="Edge.Start" OnClick="@ToggleDrawer"/>
@@ -9,7 +9,7 @@
 </MudAppBar>
 
 <MudDrawer @bind-Open="@navOpen" ClipMode="DrawerClipMode.Docked" >
-   
+   <NavMenu/>
 </MudDrawer>
 
 <MudMainContent>
