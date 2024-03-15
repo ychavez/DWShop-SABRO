@@ -6,7 +6,7 @@ namespace DWShop.Web.Client.Components.Layout
 {
     public partial class MainLayout
     {
-     
+
 
         private MudTheme currentTheme;
 
@@ -20,14 +20,27 @@ namespace DWShop.Web.Client.Components.Layout
                 : DWTheme.DarkTheme;
         }
 
-       
 
+    
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            currentTheme = await _clientPreference.GetCurrentThemeAsync();
-            await base.OnAfterRenderAsync(firstRender);
+            try
+            {
+
+                if (!firstRender)
+                    return;
+                currentTheme = await _clientPreference.GetCurrentThemeAsync();
+                await base.OnAfterRenderAsync(firstRender);
+                StateHasChanged();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
-       
+
 
 
     }

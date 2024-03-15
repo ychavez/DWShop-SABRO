@@ -74,11 +74,12 @@ namespace DWShop.Web.Infrastructure.Authtentication
             return claims;
         }
 
-        public override async Task<AuthenticationState> 
-            GetAuthenticationStateAsync()
+        public override async Task<AuthenticationState>  GetAuthenticationStateAsync()
         {
-            var savedToken = await localStorageService.GetItemAsync<string>(
-                BaseConfiguration.AuthToken);
+            //var savedToken = await localStorageService.GetItemAsync<string>(
+            //    BaseConfiguration.AuthToken);
+
+            var savedToken = "";
 
             if (string.IsNullOrWhiteSpace(savedToken)) 
             {
@@ -100,6 +101,13 @@ namespace DWShop.Web.Infrastructure.Authtentication
 
             await localStorageService.RemoveItemAsync(BaseConfiguration.AuthToken);
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+        }
+
+        public  async Task StateChangedAsync()
+        {
+            var authState = Task.FromResult(await GetAuthenticationStateAsync());
+
+            NotifyAuthenticationStateChanged(authState);
         }
     }
 }

@@ -4,6 +4,7 @@ using DWShop.Client.Infrastructure.Managers;
 using DWShop.Client.Infrastructure.Routes;
 using DWShop.Web.Infrastructure.Authtentication;
 using DWShop.Web.Infrastructure.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace DWShop.Web.Client.Extensions
 {
@@ -14,17 +15,23 @@ namespace DWShop.Web.Client.Extensions
         {
             builder.Services.AddScoped<ClientPreferenceServices>();
             builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddScoped<DWStateProvider>();
+            builder.Services.AddScoped<ILoginService, LoginService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, DWStateProvider>();
             builder.Services.AddManagers();
             builder.Services.AddTransient<AuthenticationHeaderHandler>();
-            builder.Services.AddHttpClient(BaseConfiguration.BaseAddress, x=> { })
-                .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+
+            builder.Services.AddScoped(sp => 
+            new HttpClient { BaseAddress =
+            new Uri(BaseConfiguration.BaseAddress) });
+              
 
 
-             return builder;
+            return builder;
 
         }
 
-        public static IServiceCollection AddManagers(this IServiceCollection services) 
+        public static IServiceCollection AddManagers(this IServiceCollection services)
         {
             var managers = typeof(IManager);
 
@@ -39,7 +46,7 @@ namespace DWShop.Web.Client.Extensions
 
             foreach (var type in types)
                 if (managers.IsAssignableFrom(type.Service))
-               services.AddTransient(type.Service, type.Implementation);
+                    services.AddTransient(type.Service, type.Implementation);
 
             return services;
         }

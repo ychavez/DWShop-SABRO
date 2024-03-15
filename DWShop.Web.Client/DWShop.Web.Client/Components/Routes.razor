@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Components.Authorization
+﻿@using DWShop.Web.Client.Components.Pages
+@using Microsoft.AspNetCore.Components.Authorization
 
 <Router AppAssembly="@typeof(Program).Assembly" 
 AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
@@ -12,6 +13,10 @@ AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
         </AuthorizeRouteView>
     </Found>
     <NotFound >
-        <p> La Pagina no existe</p>
+
+            <LayoutView Layout="@typeof(Layout.MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+       
     </NotFound>
 </Router>

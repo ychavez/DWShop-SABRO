@@ -5,6 +5,6 @@ namespace DWShop.Client.Infrastructure.Routes
     {
         public const string AuthToken = "authToken";
         public const string Scheme = "Bearer";
-        public const string BaseAddress = "http://localhost:5000";
+        public const string BaseAddress = "http://localhost:5288/api/";
     }
 }
