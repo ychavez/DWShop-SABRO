@@ -1,4 +1,5 @@
 ﻿@page "/products"
+@using DWShop.Application.Features.Catalog.Commands.Update
 @using DWShop.Application.Responses.Catalog
 @using DWShop.Client.Infrastructure.Managers.Products.Get
 @rendermode InteractiveAuto
@@ -35,7 +36,7 @@
         <MudTd DataLabel="Acciones">
             <MudMenu Label="Aciones"
                      EndIcon="@Icons.Material.Filled.ArrowDropDown">
-                <MudMenuItem>Editar</MudMenuItem>
+                <MudMenuItem @onclick="@(()=> InvokeModal(@context.Id))">Editar</MudMenuItem>
                 <MudMenuItem>Eliminar</MudMenuItem>
 
             </MudMenu>
@@ -75,5 +76,36 @@
         {
             Elements = productResponse.Data;
         }
+    }
+
+    private async Task InvokeModal(int id)
+    {
+
+        var parameters = new DialogParameters();
+
+        var product = Elements.First(x => x.Id == id);
+        parameters.Add(nameof(EditProduct.EditProductCommand), new
+        UpdateCatalogCommand
+            {
+                Id = id,
+                Category = product.Category,
+                Description = product.Description,
+                Name = product.Name,
+                PhotoURL = product.PhotoURL,
+                Price = product.Price,
+                Summary = product.Summary
+            }
+        );
+
+        var options = new DialogOptions() { CloseButton = true };
+
+        var dialog = _DialogService
+        .Show<EditProduct>("Editar producto", parameters, options);
+
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+            await Reset();
+
     }
 }
