@@ -76,10 +76,13 @@ namespace DWShop.Web.Infrastructure.Authtentication
 
         public override async Task<AuthenticationState>  GetAuthenticationStateAsync()
         {
-            //var savedToken = await localStorageService.GetItemAsync<string>(
-            //    BaseConfiguration.AuthToken);
 
-            var savedToken = "";
+
+
+            string savedToken = ""; /* await localStorageService.GetItemAsync<string>(
+                BaseConfiguration.AuthToken);*/
+   
+
 
             if (string.IsNullOrWhiteSpace(savedToken)) 
             {

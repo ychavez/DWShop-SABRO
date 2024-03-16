@@ -33,8 +33,8 @@ namespace DWShop.Web.Infrastructure.Services
 
             if (result.Succeded)
             {
-                //await localStorageService.SetItemAsStringAsync(BaseConfiguration.AuthToken, 
-                //    result.Data.Token);
+                await localStorageService.SetItemAsStringAsync(BaseConfiguration.AuthToken, 
+                    result.Data.Token);
                 await ((DWStateProvider)authenticationStateProvider).StateChangedAsync();
 
                 httpClient.DefaultRequestHeaders.Authorization = 

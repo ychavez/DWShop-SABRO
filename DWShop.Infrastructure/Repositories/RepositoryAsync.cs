@@ -31,6 +31,8 @@ namespace DWShop.Infrastructure.Repositories
             if (predicate is not null)
                 query = query.Where(predicate);
 
+            
+
             //Paginacion
             query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
 

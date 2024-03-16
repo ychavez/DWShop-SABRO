@@ -1,6 +1,7 @@
 ﻿using DWShop.Application.Features.Catalog.Commands.Create;
 using DWShop.Application.Features.Catalog.Commands.Createlist;
 using DWShop.Application.Features.Catalog.Commands.Delete;
+using DWShop.Application.Features.Catalog.Commands.Update;
 using DWShop.Application.Features.Catalog.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,5 +26,10 @@ namespace DWShop.Service.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> GetCatalogs()
             => Ok(await mediator.Send(new GetCatalogQuery()));
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateProduct(int id, UpdateCatalogCommand command)
+            => Ok(await mediator.Send(command));
+
     }
 }

@@ -1,0 +1,25 @@
+﻿@using DWShop.Application.Features.Catalog.Commands.Update
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Add"/>
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudGrid>
+            <p>Content goes here</p>
+        </MudGrid>
+    </DialogContent>
+
+
+</MudDialog>
+@code
+{
+
+    [Parameter]
+    public UpdateCatalogCommand EditProductCommand { get; set; } = new();
+
+    [CascadingParameter]
+    private MudDialogInstance Dialoginstance { get;set }
+
+}

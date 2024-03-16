@@ -6,17 +6,62 @@
 <MudText Typo="Typo.h2">Productos</MudText>
 
 
-<MudTable Items="@Elements">
+<MudTable Items="@Elements"
+          Filter="new Func<CatalogResponse,bool>(FilterFunc1)">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Productos</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString1"
+                      Placeholder="Search"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="Size.Medium" Class="mt-0">
+        </MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Nombre</MudTh>
+        <MudTh>Categoria</MudTh>
+        <MudTh>Descripcion</MudTh>
+        <MudTh>Resumen</MudTh>
+        <MudTh>Precio</MudTh>
+        <MudTh>Acciones</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nombre">@context.Name</MudTd>
+        <MudTd DataLabel="Categoria">@context.Category</MudTd>
+        <MudTd DataLabel="Descripcion">@context.Description</MudTd>
+        <MudTd DataLabel="Resumen">@context.Summary</MudTd>
+        <MudTd DataLabel="Precio">@context.Price</MudTd>
+        <MudTd DataLabel="Acciones">
+            <MudMenu Label="Aciones"
+                     EndIcon="@Icons.Material.Filled.ArrowDropDown">
+                <MudMenuItem>Editar</MudMenuItem>
+                <MudMenuItem>Eliminar</MudMenuItem>
 
+            </MudMenu>
+        </MudTd>
+    </RowTemplate>
 </MudTable>
 
 @code {
 
     [Inject]
-    public IGetProductsManager  productsManager {get; set;}
+    public IGetProductsManager productsManager { get; set; }
 
     public IEnumerable<CatalogResponse> Elements { get; set; }
 
+    private string searchString1 = "";
+
+    private bool FilterFunc1(CatalogResponse element) => FilterFunc(element, searchString1);
+
+    private bool FilterFunc(CatalogResponse element, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+
+        return element.Name.Contains(searchString);
+
+    }
 
     protected async override Task OnInitializedAsync()
     {
