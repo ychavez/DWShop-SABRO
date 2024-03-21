@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dwshop.service.api:
+    image: ${DOCKER_REGISTRY-}dwshopserviceapi
+    build:
+      context: .
+      dockerfile: DWShop.Service.Api/Dockerfile

@@ -1,4 +1,5 @@
-﻿@using DWShop.Web.Client.Components.Pages
+﻿@using DWShop.Web.Client.Client.Pages
+@using DWShop.Web.Client.Components.Pages
 @using Microsoft.AspNetCore.Components.Authorization
 
 <Router AppAssembly="@typeof(Program).Assembly" 
@@ -7,7 +8,7 @@ AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
         <AuthorizeRouteView RouteData="@routeData" 
             DefaultLayout="@typeof(Layout.MainLayout)">
             <NotAuthorized>
-                <p>Aqui va a ir el login</p>
+                <Login/>
             </NotAuthorized>
 
         </AuthorizeRouteView>

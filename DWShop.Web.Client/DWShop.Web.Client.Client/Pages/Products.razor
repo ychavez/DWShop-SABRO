@@ -2,8 +2,8 @@
 @using DWShop.Application.Features.Catalog.Commands.Update
 @using DWShop.Application.Responses.Catalog
 @using DWShop.Client.Infrastructure.Managers.Products.Get
-@rendermode InteractiveAuto
-
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
 <MudText Typo="Typo.h2">Productos</MudText>
 
 

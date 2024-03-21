@@ -76,13 +76,19 @@ namespace DWShop.Web.Infrastructure.Authtentication
 
         public override async Task<AuthenticationState>  GetAuthenticationStateAsync()
         {
+            string savedToken = ""; ;
 
+            try
+            {
+                savedToken = await localStorageService.GetItemAsync<string>(
+                BaseConfiguration.AuthToken);
 
+            }
+            catch (InvalidOperationException)
+            {
 
-            string savedToken = ""; /* await localStorageService.GetItemAsync<string>(
-                BaseConfiguration.AuthToken);*/
-   
-
+                
+            }
 
             if (string.IsNullOrWhiteSpace(savedToken)) 
             {
@@ -95,8 +101,8 @@ namespace DWShop.Web.Infrastructure.Authtentication
 
             var user = state.User;
             string? exp = user.FindFirst(x => x.Type == "exp")?.Value;
-            var expTime = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(exp));
-            var diff = expTime - DateTimeOffset.Now;
+            var expTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(exp));
+            var diff = expTime - DateTimeOffset.UtcNow;
             if (diff.TotalMinutes >= 1)
             {
                 return state;

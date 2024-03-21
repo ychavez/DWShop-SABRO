@@ -1,10 +1,12 @@
 ﻿using Blazored.LocalStorage;
 using DWShop.Application.Features.Identity.Commands.Login;
+using DWShop.Application.Responses.Identity;
 using DWShop.Client.Infrastructure.Managers.Identity.Login;
 using DWShop.Client.Infrastructure.Routes;
 using DWShop.Shared.Wrapper;
 using DWShop.Web.Infrastructure.Authtentication;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 
 
@@ -29,8 +31,18 @@ namespace DWShop.Web.Infrastructure.Services
         }
         public async Task<IResult> Login(LoginCommand loginCommand)
         {
-            var result = await authenticationManager.Login(loginCommand);
+            IResult<LoginResponse> result;
+            try
+            {
 
+             result = await authenticationManager.Login(loginCommand);
+
+            }
+            catch (Exception ex)
+            {
+
+                return await Result.FailAsync();
+            }
             if (result.Succeded)
             {
                 await localStorageService.SetItemAsStringAsync(BaseConfiguration.AuthToken, 

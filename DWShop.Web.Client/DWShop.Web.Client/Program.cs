@@ -16,6 +16,7 @@ namespace DWShop.Web.Client
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
             builder.AddClientServices();
+            builder.Services.AddHealthChecks();
 
             builder.Services.AddMudServices();
             builder.Services.AddManagers();
